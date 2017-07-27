@@ -1,0 +1,221 @@
+//mysql project file
+//Bona Vista Database Schema
+
+PARENT:
+
+CREATE TABLE Parent(
+
+ParID CHAR(7) PRIMARY KEY,
+password VARCHAR(80) NOT NULL,
+fname VARCHAR(20) NOT NULL,
+lname VARCHAR(20) NOT NULL,
+phone CHAR(12),
+email VARCHAR(30)
+
+);
+TESTER VALUE...
+INSERT INTO Parent VALUES('Flo1234', '920688bd88d6a1ba0e177f17bdf6dddd', 'Matt', 'Floyd', '765-860-3795', 'matfloyd@iuk.edu');
+
+PROGRAM:
+
+CREATE TABLE Program(
+
+progID INT(1) PRIMARY KEY,
+progName VARCHAR(40)
+
+);
+
+Populate...
+INSERT INTO Program VALUES(1, 'Early Head Start');
+INSERT INTO Program VALUES(2, 'Keys for Kids');
+INSERT INTO Program VALUES(3, 'Child Care');
+
+
+STUDENT:
+
+CREATE TABLE Student(
+
+SID CHAR(7) PRIMARY KEY,
+fname VARCHAR(20) NOT NULL,
+lname VARCHAR(20) NOT NULL,
+bdate DATE,
+progID INT(1) NOT NULL,
+ParID CHAR(7),
+FOREIGN KEY (ParID) REFERENCES Parent (ParID),
+FOREIGN KEY (ProgID) REFERENCES Program (ProgID)
+
+);
+
+
+TEACHER:
+
+CREATE TABLE Teacher(
+
+TID CHAR(7) PRIMARY KEY,
+password VARCHAR(80) NOT NULL,
+fname VARCHAR(20) NOT NULL,
+lname VARCHAR(20) NOT NULL,
+progID INT(1) NOT NULL,
+FOREIGN KEY (ProgID) REFERENCES Program (ProgID)
+
+);
+TESTER VALUE...
+INSERT INTO Teacher VALUES('Smi6789', '920688bd88d6a1ba0e177f17bdf6dddd', 'John', 'Smith', 1);
+
+ADMIN:
+
+CREATE TABLE Admin(
+
+AID CHAR(7) PRIMARY KEY,
+password VARCHAR(80) NOT NULL,
+fname VARCHAR(20) NOT NULL,
+lname VARCHAR(20) NOT NULL
+
+);
+TESTER VALUE...
+INSERT INTO Admin VALUES('Inm4321', '920688bd88d6a1ba0e177f17bdf6dddd', 'Chris', 'Inman');
+
+MEDICINE:
+
+CREATE TABLE Medicine(
+
+student CHAR(7),
+date DATE,
+time VARCHAR(20),
+description VARCHAR(40),
+FOREIGN KEY (student) REFERENCES Student (SID),
+CONSTRAINT PK_MEDICINE PRIMARY KEY (student, date)
+
+);
+
+
+CLASS:
+
+CREATE TABLE Class(
+
+teacher CHAR(7),
+student CHAR(7),
+RMnum VARCHAR(5),
+FOREIGN KEY (teacher) REFERENCES Teacher (TID),
+FOREIGN KEY (student) REFERENCES Student (SID),
+CONSTRAINT PK_CLASS PRIMARY KEY (teacher, student)
+
+);
+
+
+MESSAGES:
+DROP TABLE IF EXISTS Messages;
+
+CREATE TABLE Messages(
+
+ParID CHAR(7),
+TID CHAR(7),
+timestamp TIMESTAMP,
+message VARCHAR(500),
+FOREIGN KEY (ParID) REFERENCES Parent (ParID),
+FOREIGN KEY (TID) REFERENCES Teacher (TID),
+
+
+);
+
+
+ANNOUNCEMENTS: (0 is false, should be public. if true then staff only)
+
+CREATE TABLE Announcements(
+
+creator CHAR(7),
+flag BOOLEAN NOT NULL DEFAULT 0,
+date DATE,
+title VARCHAR(40),
+announcement VARCHAR(500),
+FOREIGN KEY (creator) REFERENCES Admin (AID),
+CONSTRAINT PK_MESSAGE PRIMARY KEY (creator, date)
+
+);
+
+
+PICTURES:
+
+CREATE TABLE Pictures(
+
+uploader CHAR(7),
+date DATE,
+tag CHAR(7),
+image BLOB,
+FOREIGN KEY (uploader) REFERENCES Teacher (TID),
+FOREIGN KEY (tag) REFERENCES Student (SID),
+CONSTRAINT PK_PICTURE PRIMARY KEY (tag, date)
+
+
+);
+
+FEEDING LOG:
+
+CREATE TABLE FeedingLog(
+
+child CHAR(7),
+date DATE,
+times VARCHAR(250),
+foods VARCHAR(250),
+amounts VARCHAR(250),
+provider CHAR(7),
+FOREIGN KEY (child) REFERENCES Student (SID),
+FOREIGN KEY (provider) REFERENCES Teacher (TID),
+CONSTRAINT PK_FEEDLOG PRIMARY KEY (child, date)
+);
+
+
+PARENT FORM:
+
+CREATE TABLE PForm(
+
+parent CHAR(7),
+child CHAR(7),
+date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+altContact VARCHAR(20),
+food VARCHAR(100),
+medicine BOOLEAN NOT NULL DEFAULT 0,
+notes VARCHAR(500),
+FOREIGN KEY (child) REFERENCES Student (SID)
+
+);
+
+
+TEACHER FORM:
+
+CREATE TABLE TForm(
+
+teacher CHAR(7),
+child CHAR(7),
+date TIMESTAMP,
+dayQuality VARCHAR(30),
+grossMotor VARCHAR(150),
+activities VARCHAR(150),
+circleTime VARCHAR(150),
+fineMotor VARCHAR(150),
+timeSlept VARCHAR(20),
+qualitySlept VARCHAR(20),
+enjoyedComm VARCHAR(250),
+artComm VARCHAR(250),
+specialComm VARCHAR(250),
+otherComm VARCHAR(250),
+snackAM VARCHAR(80),
+breakfast VARCHAR(80),
+lunch VARCHAR(80),
+snackPM VARCHAR(80),
+bottleNotes VARCHAR(250),
+feedingLOG BOOLEAN NOT NULL DEFAULT 0,
+restroomComm VARCHAR(250),
+medicine BOOLEAN NOT NULL DEFAULT 0,
+mood VARCHAR(20),
+physThrpTime VARCHAR(20),
+occThrpTime VARCHAR(20),
+spchThrpTime VARCHAR(20),
+therapyNotes VARCHAR(500),
+therpName VARCHAR(40),
+IEP BOOLEAN NOT NULL DEFAULT 0,
+FOREIGN KEY (child) REFERENCES Student (SID)
+
+
+
+);

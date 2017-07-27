@@ -1,0 +1,315 @@
+
+
+body
+{
+	font-family: "Trebuchet MS";
+	background-color:#333;
+	background-image: url('http://ko-turing.ads.iu.edu/~info451-02/images/background2.JPG');
+	/*http://ko-turing.ads.iu.edu/~info451-02/images/background2*/
+    background-size: cover;
+	background-attachment: fixed;
+	margin:0;
+	padding:0;
+}
+
+.error {
+
+	color:#FFFFFF;
+	font-size:16px;
+	}
+#bdate{
+	font-size: 16px;
+}
+#popupBoxPosition{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 10;
+				background-color: rgba(0,0,0,0.7); 
+				display: none;
+			}
+			.popupBoxWrapper{
+				width: 550px; margin: 50px auto; text-align: left;
+			}
+			.popupBoxContent{
+				background-color: #FFF; padding: 15px;
+			}
+
+#wrapper{
+	position: relative;
+	width:80%;
+	margin:0 auto;
+	}
+
+h3 {
+    font-size: 30px;
+    font-weight: normal;
+    position: relative;
+    text-align: center;
+	color:#FFFFFF;
+}
+
+#container
+{
+	position: relative;
+	width:375px;
+
+	margin:0 auto;
+
+}
+#logo{
+	position: relative;
+
+	width: 80%;
+	margin:0 auto;
+}
+/*CSS for tabs below*/
+.tabs {
+    position: relative;
+	width: 550px;
+}
+
+.tabs input[type="radio"] {
+	position: absolute;
+	z-index: 1000;
+	height: 37px;
+	left: 0px;
+	top: 0px;
+	opacity: 0;
+    filter: alpha(opacity=0);
+	cursor: pointer;
+}
+.tabs input#tabOne{
+	left: 0px;
+	width:110px;
+}
+.tabs input#tabTwo {
+
+	left: 120px;
+	width: 175px;
+}
+.tabs input#tabThree {
+    left: 258px;
+    width: 80px;
+}
+.tabs input#tabFour {
+	left: 360px;
+	width: 90px;
+}
+.tabs input#tabFive {
+	left: 450px;
+	width: 75px;
+}
+.tabs span {
+	background: #070A99;
+	font-size: 16px;
+	line-height: 40px;
+	height: 40px;
+	position: relative;
+    float: left;
+	display: block;
+	color: #FFFFFF;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+    border-radius: 5px 5px 0 0;
+	margin-right:10px;
+	padding-left:8px;
+	padding-right:8px;
+}
+
+.tabs span:after {
+    content: '';
+	background: #fff;
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	display: block;
+}
+
+.tabs input:hover + span {
+	background: #FFFFFF;
+	color:#070A99;
+	
+}
+
+.tabs span:first-of-type {
+    z-index: 5;
+}
+
+.tab-label-2 {
+    z-index: 4;
+}
+
+.tab-label-3 {
+    z-index: 3;
+}
+
+.tab-label-4 {
+    z-index: 2;
+}
+.tab-label-5 {
+	z-index: 1;
+}
+.tabs input:checked + span {
+    background: #fff;
+	z-index: 6;
+	color:#070A99;
+}
+
+.overlap {
+	clear: both;
+}
+
+#content {
+	position: relative;
+	z-index: 5;
+}
+
+#content p{
+float:left;
+width:100%;
+margin: 0 0 10px;
+}
+#content div {
+
+	background: #fff;
+	border-radius: 0 0 5px 5px;
+    position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	z-index: 1;
+    opacity: 0;
+
+    -webkit-transition: opacity linear 0.1s;
+    -moz-transition: opacity linear 0.1s;
+    -o-transition: opacity linear 0.1s;
+    -ms-transition: opacity linear 0.1s;
+    transition: opacity linear 0.1s;
+}
+
+.tabs input.tabTwoSelector:checked ~ #content .tabTwoForm,
+.tabs input.tabOneSelector:checked ~ #content .tabOneForm,
+.tabs input.tabThreeSelector:checked ~ #content .tabThreeForm,
+.tabs input.tabFiveSelector:checked ~ #content .tabFiveForm,
+.tabs input.tabFourSelector:checked ~ #content .tabFourForm{
+	z-index: 100;
+    filter: alpha(opacity=100);
+    opacity: 1;
+	/*overflow: scroll;*/
+    
+}
+
+
+#content .field {
+    -moz-box-sizing: content-box;
+    border: 1px solid #B2B2B2;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 4px 0 rgba(168, 168, 168, 0.6) inset;
+    margin-top: 4px;
+    padding: 10px 5px 10px 32px;
+    transition: all 0.2s linear 0s;
+    width: 315px;
+
+}
+
+#content label {
+    color: #070A99;
+    position: relative;
+}
+
+#content input[type="submit"] {
+    background:#070A99;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 16px;
+    margin:5px;
+    padding: 8px;
+	float: right;
+}
+#content input[type="reset"] {
+    background:#070A99;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 16px;
+    margin:5px;
+    padding: 8px;
+	float: right;
+}
+
+
+#content [data-icon]:after {
+    color: #070A99;
+    content: attr(data-icon);
+    left: 10px;
+    position: absolute;
+    top: 35px;
+    width: 30px;
+}
+
+.signin{
+    color: #070A99;
+    font-size: 16px;
+}
+.keeplogin{
+    color: #070A99;
+    font-size: 16px;
+}
+#entity{
+    -moz-box-sizing: content-box;
+    border: 1px solid #B2B2B2;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 4px 0 rgba(168, 168, 168, 0.6) inset;
+    margin-top: 4px;
+    padding: 10px 5px 10px 32px;
+    transition: all 0.2s linear 0s;
+    width: 315px;
+}
+
+.calendar-box {
+	display:none;
+	z-index: inherit;
+	background-color:#fff;
+	border:3px solid #444;
+	position: absolute;
+	width:200px;
+	height: 200px;
+	padding:5px 20px 2px 200px
+}
+.calendar-box select.calendar-month {
+	width:90px;
+}
+.calendar-box select.calendar-year {
+	width:70px;
+}
+.calendar-box .calendar-cancel {
+	width:80%;
+}
+.calendar-box table td {
+	width:14%;
+}
+.calendar-box .calendar-title {
+	text-align:center;
+}
+.calendar-box a {
+	text-decoration:none;
+}
+.calendar-box .today a {
+	padding:0 5px;
+	margin-left:-5px;
+	background-color:#ffe9c6;
+} 
+.calendar-box .selected a {
+	padding:0 5px;
+	margin-left:-5px;
+	background-color:#c9ff8b;
+}
+
+
+
